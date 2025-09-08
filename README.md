@@ -7,7 +7,74 @@ Y. Hu et al. 2021. v2e: From video frames to realistic DVS events. In Proceeding
 SuperSlomo model checkpoint for RGB frame interpolation can be found in [SuperSloMo39.ckpt](https://drive.google.com/file/d/1ETID_4xqLpRBrRo1aOT7Yphs3QqWR_fx/view?usp=sharing)
 
 
+### Dataset Organization
+
+RGB dataset for `slomo_generator.py` inputs
+```
+RGB-0
+  |---- 00000.png
+  |---- 00001.png
+  |---- ......png
+  |---- timestamps.csv
+```
+
+`timestamps.csv` aligns the timestamps (in second) to png filenames.
+```
+timestamp,png_filename
+71342.393095737,00000.png
+71342.426423075,00001.png
+71342.4597504,00002.png
+71342.493076325,00003.png
+......
+```
+
+Slow motion `slomo_generator.py` outputs
+```
+slomo-0
+  |---- 000000.png
+  |---- 000001.png
+  |---- .......png
+  |---- timestamps.csv
+```
+
+`timestamps.csv` aligns the interpolated slow motion timestamps (in second) to png filenames. This is an example for 10x slow motion.
+```
+timestamp,png_filename
+71342.393095737,000000.png (1st frame in original RGB)
+71342.3964284708,000001.png
+71342.39976120461,000002.png
+71342.4030939384,000003.png
+71342.4064266722,000004.png
+71342.409759406,000005.png
+71342.4130921398,000006.png
+71342.4164248736,000007.png
+71342.4197576074,000008.png
+71342.4230903412,000009.png
+71342.426423075,000010.png (2nd frame in original RGB)
+......
+```
+
+Similar for `event_generator_pqdm.py` and `event_generator.py` outputs.
+```
+event-0
+  |---- 000000.png
+  |---- 000001.png
+  |---- .......png
+  |---- timestamps.csv
+```
+
+`timestamps.csv` aligns with the original RGB frame with 1 frame offset, since there will be no event accumulation in first frame. 
+```
+timestamp,png_filename,raw_event_count
+71342.42642907034,000000.png,0 (2nd frame in original RGB)
+71342.45976240367,000001.png,103625 (3rd frame in original RGB)
+71342.49309573701,000002.png,99862 (4th frame in original RGB)
+71342.52642907033,000003.png,583847 (5th frame in original RGB)
+```
+
+
 ### Usage
+
 First run `slomo_generator.py` for frame interpolation. 
 
 ```
