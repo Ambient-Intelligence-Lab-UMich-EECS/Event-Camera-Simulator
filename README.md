@@ -102,7 +102,8 @@ options:
                         Batch size for processing (default: 128)
 ```
 
-Then run `event_generator_pqdm.py` for fast parallel event generation. `event_generator.py` is for slower single thread event generation. 
+Then run `event_generator_pqdm.py` for fast parallel event generation. `event_generator.py` is for slower single thread event generation. Filters are implemented according to [Prophesee - Event Signal Processing
+](https://docs.prophesee.ai/stable/hw/manuals/esp.html).
 
 ```
 usage: event_generator_pqdm.py [-h] [--group_size GROUP_SIZE] [--workers WORKERS] [--mp4_output MP4_OUTPUT] [--out_fps OUT_FPS]
