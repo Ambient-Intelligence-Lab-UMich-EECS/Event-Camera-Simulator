@@ -1,6 +1,6 @@
 # Event Camera Simulator
 
-Adaptation of v2e framework from
+Adaptation of RGB frames to event camera simulation framework from
 
 Y. Hu et al. 2021. v2e: From video frames to realistic DVS events. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). IEEE, 1312–1321.
 
